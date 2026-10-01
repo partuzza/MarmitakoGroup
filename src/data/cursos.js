@@ -1,14 +1,14 @@
 // ES: Catálogo de cursos. Título y descripción en los dos idiomas; el nivel es b/i/a (ver i18n → niveles).
-//     La portada de cada curso está en public/cursos/<id>.svg (se puede cambiar por una foto con el mismo nombre)
+//     La foto de cada curso está en public/cursos/<id>.jpg (origen y licencia en public/cursos/CREDITOS.md)
 // EN: Course catalogue. Title and description in both languages; level is b/i/a (see i18n → niveles).
-//     Each course cover lives in public/cursos/<id>.svg (it can be swapped for a photo with the same name)
+//     Each course photo lives in public/cursos/<id>.jpg (source and licence in public/cursos/CREDITOS.md)
 export const NIVELES = ['b', 'i', 'a']
 
-// ES: Cuántos cursos se ven sin suscripción; el resto queda detrás del aviso
-// EN: How many courses are visible without a subscription; the rest sit behind the notice
+// ES: Los primeros CURSOS_GRATIS del catálogo se ven sin suscripción; el resto queda detrás del aviso
+// EN: The first CURSOS_GRATIS courses in the catalogue are visible without a subscription; the rest sit behind the notice
 export const CURSOS_GRATIS = 9
 
-export const imagenCurso = (c) => `${import.meta.env.BASE_URL}cursos/${c.id}.svg`
+export const imagenCurso = (c) => `${import.meta.env.BASE_URL}cursos/${c.id}.jpg`
 
 export const cursos = [
   {
@@ -132,3 +132,8 @@ export const cursos = [
     desc: { es: 'Prompt injection, fugas de datos y cómo proteger apps que usan modelos de lenguaje.', en: 'Prompt injection, data leaks and how to protect apps that use language models.' },
   },
 ]
+
+// ES: Lo usan la web y el servidor (que comprueba quién puede apuntarse a qué)
+// EN: Used by both the website and the server (which checks who can enrol in what)
+const LIBRES = new Set(cursos.slice(0, CURSOS_GRATIS).map((c) => c.id))
+export const esLibre = (id) => LIBRES.has(id)

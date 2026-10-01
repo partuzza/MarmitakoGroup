@@ -36,7 +36,7 @@ const firmar = (texto) => createHmac('sha256', SECRETO()).update(texto).digest('
 
 // ES: Datos que se pueden enseñar al navegador (sin el hash)
 // EN: Data that can be shown to the browser (without the hash)
-const publico = ({ email, nombre, suscrito, docente }) => ({ email, nombre, suscrito, docente })
+const publico = ({ email, nombre, plan, suscrito, docente }) => ({ email, nombre, plan, suscrito, docente })
 
 export async function comprobar(email, clave) {
   const usuario = usuarios.find((u) => u.email === String(email).trim().toLowerCase())

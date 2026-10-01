@@ -54,9 +54,11 @@ Login sin base de datos: los usuarios están en `server/usuarios.json` (contrase
 
 | Usuario              | Contraseña  | Qué ve                                  |
 | -------------------- | ----------- | --------------------------------------- |
-| `alumno@ziber.com`   | `ziber2026` | 9 cursos y el aviso de suscripción      |
-| `suscrito@ziber.com` | `ziber2026` | todos los cursos                        |
+| `alumno@ziber.com`   | `ziber2026` | 9 cursos, el aviso de suscripción y Mis cursos |
+| `suscrito@ziber.com` | `ziber2026` | todos los cursos y Mis cursos           |
 | `profe@ziber.com`    | `ziber2026` | todos los cursos y el panel docente     |
+
+Los alumnos se apuntan a los cursos desde *Cursos* y los ven en *Mis cursos*. Al principio tienen los cursos de ejemplo de `server/usuarios.json`; los cambios se guardan en `server/inscripciones.json`, que no se sube a git. Para volver a los de ejemplo, borra ese archivo.
 
 Opcional: pon un `SESSION_SECRET` en `.env` (ver `.env.example`) para que las sesiones no se cierren al reiniciar el servidor.
 
@@ -69,17 +71,21 @@ src/
   i18n/                traducciones: index.js (función t), es.js, en.js
   router/index.js      rutas y protección del panel docente
   auth.js              estado de la sesión (entrar, salir, quién hay conectado)
+  misCursos.js         cursos a los que está apuntado el alumno
   views/Inicio.vue     página principal
   views/Cursos.vue     catálogo en tarjetas con filtros, buscador y aviso de suscripción
   views/Login.vue      formulario de login
+  views/MisCursos.vue  cursos a los que se ha apuntado el alumno
+  views/MiSuscripcion.vue plan del usuario con sesión
   views/PhishingTest.vue analizador de enlaces + quiz
-  components/          MailPhishing, UrlColoreada, QuizPhishing
+  components/          MailPhishing, UrlColoreada, QuizPhishing, TarjetaCurso, MenuUsuario
   data/cursos.js       datos de los cursos (en los dos idiomas)
   utils/analizarUrl.js reglas de detección de phishing
   assets/style.css     estilos globales
 server/index.js        API (Google Safe Browsing, login, panel) y servidor de producción
 server/auth.js         comprobación de contraseñas y cookies de sesión
-server/usuarios.json   usuarios de prueba
+server/inscripciones.js apuntarse y darse de baja de cursos
+server/usuarios.json   usuarios de prueba (con su plan y sus cursos de ejemplo)
 server/alumnos-demo.json datos de ejemplo del panel docente
 docs/Phishing-Test.pdf explicación de cómo funciona el Phishing Test
 ```

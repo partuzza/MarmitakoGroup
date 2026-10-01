@@ -2,11 +2,13 @@
 //      - POST /api/revisar → consulta Google Safe Browsing sin exponer la clave en el navegador
 //      - POST /api/login, POST /api/logout, GET /api/yo → login de demo (ver auth.js)
 //      - GET /api/panel → datos del panel docente, solo para profesores
+//      - GET / POST / DELETE /api/mis-cursos → cursos a los que está apuntado el usuario (ver inscripciones.js)
 //      - En producción (pnpm start) también sirve la web ya compilada de dist/
 // EN: Tiny dependency-free server:
 //      - POST /api/revisar → queries Google Safe Browsing without exposing the key to the browser
 //      - POST /api/login, POST /api/logout, GET /api/yo → demo login (see auth.js)
 //      - GET /api/panel → teacher dashboard data, teachers only
+//      - GET / POST / DELETE /api/mis-cursos → courses the user is enrolled in (see inscripciones.js)
 //      - In production (pnpm start) it also serves the built website from dist/
 import { createServer } from 'node:http'
 import { readFile } from 'node:fs/promises'
@@ -14,6 +16,7 @@ import { readFileSync } from 'node:fs'
 import { join, normalize, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { comprobar, cookieSesion, cookieBorrada, usuarioDe, secretoFijo } from './auth.js'
+import { cursosDe, apuntar, darDeBaja } from './inscripciones.js'
 
 try {
   process.loadEnvFile()
@@ -129,6 +132,28 @@ async function login(req, res) {
   json(res, 200, { usuario }, { 'Set-Cookie': cookieSesion(req, usuario.email) })
 }
 
+// ES: /api/mis-cursos → { cursos: [ids] }. POST { curso } apunta y DELETE { curso } da de baja
+// EN: /api/mis-cursos → { cursos: [ids] }. POST { curso } enrols and DELETE { curso } unenrols
+async function misCursos(req, res) {
+  const usuario = usuarioDe(req)
+  if (!usuario) return json(res, 401, { error: 'sin sesión' })
+  if (req.method !== 'GET') {
+    let curso
+    try {
+      curso = String((await leerCuerpo(req)).curso)
+    } catch {
+      return json(res, 400, { error: 'datos' })
+    }
+    if (req.method === 'POST') {
+      const error = await apuntar(usuario, curso)
+      if (error) return json(res, 403, { error })
+    } else {
+      await darDeBaja(usuario, curso)
+    }
+  }
+  json(res, 200, { cursos: cursosDe(usuario.email) })
+}
+
 // ES: Sirve los archivos de dist/ sin dejar salir de la carpeta (evita path traversal)
 // EN: Serves files from dist/ without letting paths escape the folder (prevents path traversal)
 async function estatico(req, res) {
@@ -154,6 +179,7 @@ createServer((req, res) => {
   if (req.url === '/api/login' && req.method === 'POST') return login(req, res)
   if (req.url === '/api/logout' && req.method === 'POST') return json(res, 200, { ok: true }, { 'Set-Cookie': cookieBorrada(req) })
   if (req.url === '/api/yo' && req.method === 'GET') return json(res, 200, { usuario: usuarioDe(req) })
+  if (req.url === '/api/mis-cursos' && ['GET', 'POST', 'DELETE'].includes(req.method)) return misCursos(req, res)
   if (req.url === '/api/panel' && req.method === 'GET') {
     const usuario = usuarioDe(req)
     if (!usuario) return json(res, 401, { error: 'sin sesión' })

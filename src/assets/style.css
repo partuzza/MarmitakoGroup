@@ -57,6 +57,12 @@ nav a.router-link-exact-active:not(.contacto) { color: var(--cian); border-botto
 .btn:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(34, 211, 238, .55); }
 .btn.alt { background: none; color: var(--cian); border: 1px solid var(--cian); box-shadow: none; }
 .btn.alt:hover { background: rgba(34, 211, 238, .1); }
+.btn:disabled, .btn:disabled:hover { opacity: .6; cursor: default; transform: none; box-shadow: none; background: none; }
+
+/* ES: Pestañas (Phishing Test, Suscripciones) · EN: Tabs (Phishing Test, Subscriptions) */
+.pestanas { display: flex; gap: 24px; border-bottom: 1px solid var(--linea); margin-bottom: 28px; }
+.pestanas button { background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: 6px 0; font: inherit; color: var(--gris); cursor: pointer; }
+.pestanas button[aria-selected=true] { color: var(--texto); border-color: var(--texto); }
 input, select { font: inherit; color: var(--texto); background: rgba(5, 11, 24, .7); border: 1px solid var(--linea); border-radius: 10px; padding: 10px 14px; transition: .2s; }
 input::placeholder { color: #5d7396; }
 input:focus, select:focus { border-color: var(--cian); outline: none; box-shadow: 0 0 0 3px rgba(34, 211, 238, .18); }
@@ -109,6 +115,10 @@ form.box input { flex: 1; min-width: 200px; }
 .curso p { color: var(--gris); font-size: .9rem; flex: 1; }
 .curso-pie { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 10px; border-top: 1px solid var(--linea); font-size: .9rem; }
 .curso-pie .num { font-family: var(--mono); color: var(--texto); }
+.apuntado { color: var(--verde); text-decoration: none; font-weight: 500; white-space: nowrap; }
+.apuntado:hover { text-shadow: 0 0 12px var(--verde); }
+.link-btn.baja { color: var(--gris); }
+.link-btn.baja:hover { color: var(--rojo); text-shadow: none; }
 .nivel { align-self: flex-start; font: 500 .7rem var(--mono); text-transform: uppercase; letter-spacing: .08em; padding: 2px 10px; border-radius: 999px; border: 1px solid currentColor; }
 .nivel-b { color: var(--verde); }
 .nivel-i { color: var(--azul); }
@@ -122,12 +132,24 @@ form.box input { flex: 1; min-width: 200px; }
 .muro-aviso.visible { opacity: 1; translate: -50% 0; }
 .muro-aviso .candado { font-size: 2rem; margin-bottom: 4px; }
 .muro-aviso p { color: var(--gris); margin: 4px 0 18px; }
+.aviso-pago { text-align: center; padding: 28px 24px; border: 1px solid var(--cian); border-radius: 18px; background: rgba(5, 11, 24, .88); box-shadow: 0 0 40px rgba(34, 211, 238, .25); }
+.aviso-pago .candado { font-size: 2rem; margin-bottom: 4px; }
+.aviso-pago p { color: var(--gris); margin: 4px 0 18px; }
+.aviso-pago .aviso-login { margin: 14px 0 0; font-size: .9rem; }
 .link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--cian); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; white-space: nowrap; }
 .link-btn:hover { text-shadow: 0 0 12px var(--cian); }
 
 /* ES: Login · EN: Login */
 .sesion { background: none; border: 0; padding: 0; font: inherit; color: var(--gris); cursor: pointer; transition: color .2s; }
-.sesion:hover { color: var(--cian); }
+.sesion:hover, .sesion[aria-expanded=true] { color: var(--cian); }
+.sesion { display: inline-flex; align-items: center; gap: 4px; }
+.sesion .flecha { transition: transform .2s; }
+.sesion[aria-expanded=true] .flecha { transform: rotate(180deg); }
+.menu-usuario { position: relative; }
+.desplegable { position: absolute; right: 0; top: calc(100% + 12px); z-index: 20; min-width: 190px; list-style: none; padding: 6px; border: 1px solid var(--linea); border-radius: 12px; background: rgba(5, 11, 24, .96); backdrop-filter: blur(12px); box-shadow: 0 12px 32px rgba(0, 0, 0, .5), var(--brillo); }
+.desplegable a, .desplegable button { display: block; width: 100%; text-align: left; padding: 8px 12px; border: 0; border-radius: 8px; background: none; font: inherit; color: var(--gris); text-decoration: none; cursor: pointer; }
+nav .desplegable a:hover, nav .desplegable button:hover, nav .desplegable a.router-link-active { background: rgba(47, 123, 255, .12); color: var(--cian); border-bottom: 0; text-shadow: none; }
+.desplegable li + li:last-child { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--linea); }
 .login-form { display: grid; gap: 6px; max-width: 360px; }
 .login-form label { font-size: .88rem; color: var(--gris); }
 .login-form input { margin-bottom: 8px; }
@@ -139,8 +161,18 @@ form.box input { flex: 1; min-width: 200px; }
 .demo code { font-family: var(--mono); color: var(--texto); }
 
 /* ES: Pie · EN: Footer */
-footer { border-top: 1px solid var(--linea); padding: 24px 0 40px; color: var(--gris); font-size: .85rem; font-family: var(--mono); }
-footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+/* ES: El pie queda siempre abajo aunque la página sea corta · EN: The footer always sits at the bottom even on short pages */
+/* ES: Fondo negro con un degradado encima que funde la página hacia el pie · EN: Black background with a gradient above that fades the page into the footer */
+#app { display: flex; flex-direction: column; min-height: 100vh; }
+#app > main { flex: 1; }
+footer { position: relative; background: #000; color: var(--gris); font-size: .9rem; margin-top: 120px; }
+footer::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 200px; background: linear-gradient(to bottom, transparent, #000); pointer-events: none; }
+.pie-columnas { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-top: 24px; padding-bottom: 40px; }
+.pie-marca p { margin-top: 12px; max-width: 34ch; line-height: 1.6; }
+footer nav { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; font-size: .9rem; }
+footer h2 { font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--texto); margin-bottom: 4px; }
+footer nav a.router-link-exact-active:not(.contacto) { border-bottom: 0; text-shadow: none; color: var(--gris); }
+.pie-final { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-top: 20px; padding-bottom: 32px; background: linear-gradient(rgba(255, 255, 255, .08), rgba(255, 255, 255, .08)) 20px 0 / calc(100% - 40px) 1px no-repeat; font: .8rem var(--mono); color: #5d7396; }
 
 /* ES: Precios para colegios y panel docente / EN: School pricing and teacher dashboard */
 .planes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 28px 0 48px; }
@@ -154,6 +186,10 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .plan .alumnos { color: var(--gris); }
 .plan ul { padding-left: 1.1em; display: grid; gap: 4px; margin-bottom: 8px; }
 .plan ul li::marker { color: var(--cian); }
+.plan .btn { text-align: center; }
+.mi-plan { display: grid; grid-template-columns: minmax(260px, 360px) 1fr; gap: 32px; align-items: start; margin-top: 8px; }
+.mi-plan-acciones { display: grid; gap: 10px; justify-items: start; padding-top: 8px; }
+.mi-plan-acciones p { color: var(--gris); max-width: 46ch; margin-bottom: 8px; }
 .resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 24px 0 32px; }
 .resumen > div { border: 1px solid var(--linea); border-radius: 14px; background: var(--cristal); padding: 16px 18px; }
 .resumen strong { display: block; font: 700 1.9rem var(--serif); color: var(--cian); text-shadow: 0 0 18px rgba(34, 211, 238, .4); }
@@ -167,6 +203,9 @@ td.bajo { color: var(--rojo); font-weight: 700; }
 @media (max-width: 760px) {
   .hero { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; }
   .filas > div { grid-template-columns: 1fr; gap: 2px; }
+  .pie-columnas { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .mi-plan { grid-template-columns: 1fr; }
+  .pie-marca { grid-column: 1 / -1; }
   .tabla .col-desc, .tabla .col-horas { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }

@@ -5,3 +5,6 @@ dist/
 .vscode/*
 !.vscode/extensions.json
 .env
+
+# ES: Inscripciones guardadas por el servidor al probar · EN: Enrolments saved by the server while testing
+server/inscripciones.json

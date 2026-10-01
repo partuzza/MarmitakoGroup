@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 
-// ES: Usuario con sesión iniciada ({ email, nombre, suscrito, docente }) o null.
+// ES: Usuario con sesión iniciada ({ email, nombre, plan, suscrito, docente }) o null.
 //     La cookie de sesión es HttpOnly: aquí solo guardamos lo que nos dice el servidor
-// EN: Logged-in user ({ email, nombre, suscrito, docente }) or null.
+// EN: Logged-in user ({ email, nombre, plan, suscrito, docente }) or null.
 //     The session cookie is HttpOnly: here we only keep what the server tells us
 export const usuario = ref(null)
 

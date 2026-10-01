@@ -18,7 +18,7 @@ function enviar() {
       <h1>{{ t('inicio.titulo') }}</h1>
       <p>{{ t('inicio.intro') }}</p>
       <RouterLink class="enlace-flecha" to="/cursos">{{ t('inicio.verCursos') }}</RouterLink>
-      <RouterLink class="enlace-flecha" to="/precios">{{ t('inicio.paraColegios') }}</RouterLink>
+      <RouterLink class="enlace-flecha" :to="{ path: '/precios', query: { para: 'escuelas' } }">{{ t('inicio.paraColegios') }}</RouterLink>
     </div>
     <div>
       <MailPhishing />

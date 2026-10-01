@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { t } from '../i18n'
 import { usuario, entrar, salir } from '../auth'
@@ -10,6 +10,10 @@ const email = ref('')
 const clave = ref('')
 const error = ref(null)
 const enviando = ref(false)
+
+// ES: Si viene del panel docente se explica que es solo para profesores
+// EN: If coming from the teacher dashboard, explain it's for teachers only
+const desdePanel = computed(() => String(route.query.volver || '').startsWith('/panel'))
 
 // ES: Usuarios de prueba que se enseñan en pantalla (la contraseña de los tres es la misma)
 // EN: Test users shown on screen (all three share the same password)
@@ -34,12 +38,12 @@ async function enviar() {
 
       <template v-if="usuario">
         <p class="lead">{{ t('login.dentro', { nombre: usuario.nombre }) }}</p>
-        <p v-if="route.query.volver" class="error">{{ t('login.soloDocentes') }}</p>
+        <p v-if="desdePanel" class="error">{{ t('login.soloDocentes') }}</p>
         <button class="btn alt" @click="salir">{{ t('menu.salir') }}</button>
       </template>
 
       <template v-else>
-        <p class="lead">{{ route.query.volver ? t('login.necesario') : t('login.intro') }}</p>
+        <p class="lead">{{ desdePanel ? t('login.necesario') : route.query.volver ? t('login.paraSeguir') : t('login.intro') }}</p>
         <form class="login-form" @submit.prevent="enviar">
           <label for="login-email">{{ t('login.correo') }}</label>
           <input id="login-email" v-model="email" type="email" autocomplete="username" required>
