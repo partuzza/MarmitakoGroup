@@ -1,18 +1,17 @@
 <script setup>
-import { useRoute } from 'vue-router'
-
-const route = useRoute()
+import { idioma, t } from './i18n'
 </script>
 
 <template>
   <header class="top">
     <div class="wrap">
-      <RouterLink class="logo" to="/">Marmitako<b>Group</b></RouterLink>
+      <RouterLink class="logo" to="/">Marmitako Group</RouterLink>
       <nav aria-label="Principal">
-        <RouterLink to="/">Inicio</RouterLink>
-        <RouterLink to="/cursos">Cursos</RouterLink>
-        <RouterLink :to="{ path: '/', query: { ir: 'contacto' } }">Contacto</RouterLink>
-        <RouterLink v-if="route.name === 'inicio'" class="btn" to="/cursos">Ver cursos</RouterLink>
+        <RouterLink to="/">{{ t('menu.inicio') }}</RouterLink>
+        <RouterLink to="/cursos">{{ t('menu.cursos') }}</RouterLink>
+        <RouterLink to="/phishing-test">{{ t('menu.phishing') }}</RouterLink>
+        <RouterLink :to="{ path: '/', query: { ir: 'contacto' } }" active-class="" exact-active-class="contacto">{{ t('menu.contacto') }}</RouterLink>
+        <button class="idioma" :lang="idioma === 'es' ? 'en' : 'es'" @click="idioma = idioma === 'es' ? 'en' : 'es'">{{ t('menu.cambiar') }}</button>
       </nav>
     </div>
   </header>
@@ -23,8 +22,8 @@ const route = useRoute()
 
   <footer>
     <div class="wrap">
-      <span>Marmitako Group · Nazaret · 2026</span>
-      <span>Demo de plataforma web de ciberseguridad</span>
+      <span>{{ t('pie.lugar') }}</span>
+      <span>{{ t('pie.nota') }}</span>
     </div>
   </footer>
 </template>

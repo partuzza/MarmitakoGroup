@@ -1,11 +1,7 @@
 <script setup>
 import { ref } from 'vue'
+import { t } from '../i18n'
 
-const AYUDA = 'Toca lo subrayado: ¿qué señales de alarma ves?'
-const senales = {
-  urgencia: 'Urgencia artificial: los estafadores te meten prisa para que no pienses.',
-  enlace: 'El enlace no lleva al banco real. Pasa el ratón por encima antes de pulsar.',
-}
 const activa = ref(null)
 
 function alternar(clave) {
@@ -14,15 +10,18 @@ function alternar(clave) {
 </script>
 
 <template>
-  <div class="mail" role="group" aria-label="Ejemplo de correo de phishing">
-    <small>De: soporte@banc0-seguro.com</small>
-    <small>Asunto:
-      <button class="flag" :aria-pressed="activa === 'urgencia'" @click="alternar('urgencia')">Tu cuenta será bloqueada en 24 h</button>
-    </small>
-    <hr>
-    <p>Hola cliente, detectamos actividad extraña.
-      <button class="flag" :aria-pressed="activa === 'enlace'" @click="alternar('enlace')">Verifica tus datos aquí</button>
-      para evitar el bloqueo.</p>
-    <p class="mail-note" aria-live="polite">{{ activa ? senales[activa] : AYUDA }}</p>
+  <div class="mail" role="group" :aria-label="t('mail.aria')">
+    <div class="mail-cab">
+      <div>{{ t('mail.de') }}: soporte@banc0-seguro.com</div>
+      <div>{{ t('mail.asunto') }}:
+        <button class="flag" :aria-pressed="activa === 'urgencia'" @click="alternar('urgencia')">{{ t('mail.asuntoTexto') }}</button>
+      </div>
+    </div>
+    <div class="mail-cuerpo">
+      <p>{{ t('mail.saludo') }}
+        <button class="flag" :aria-pressed="activa === 'enlaceFalso'" @click="alternar('enlaceFalso')">{{ t('mail.enlace') }}</button>
+        {{ t('mail.final') }}</p>
+      <p class="mail-note" aria-live="polite">{{ activa ? t('mail.' + activa) : t('mail.ayuda') }}</p>
+    </div>
   </div>
 </template>
