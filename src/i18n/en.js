@@ -1,15 +1,18 @@
 export default {
-  menu: { inicio: 'Home', cursos: 'Courses', phishing: 'Phishing Test', contacto: 'Contact', cambiar: 'Español' },
+  menu: { inicio: 'Home', cursos: 'Courses', phishing: 'Phishing Test', precios: 'For schools', panel: 'Teacher dashboard', contacto: 'Contact', cambiar: 'Español' },
   pie: { lugar: 'Marmitako Group · Nazaret, 2026', nota: 'Class project' },
   titulos: {
     inicio: 'Marmitako Group | Cybersecurity for young people',
     cursos: 'Courses | Marmitako Group',
     'phishing-test': 'Phishing Test | Marmitako Group',
+    precios: 'School plans | Marmitako Group',
+    panel: 'Teacher dashboard | Marmitako Group',
   },
   inicio: {
     titulo: 'Cybersecurity explained for normal people',
     intro: 'Courses, guides and talks for people aged 18 to 29. Organised by level, without unnecessary jargon.',
     verCursos: 'See the courses →',
+    paraColegios: 'School plans →',
     ejemplo: 'Example: a real phishing email, simplified.',
     queHay: "What's here",
     queHayIntro: 'Cybersecurity information is usually scattered, very technical or expensive. We put it together and adapt it for beginners.',
@@ -125,5 +128,17 @@ export default {
       instagramIp: 'An IP address, not a domain.',
       instagram: 'Official domain.',
     },
+  },
+  precios: {
+    titulo: 'School plans',
+    intro: 'One subscription per school: students learn not to fall for suspicious links and emails, and teachers see their progress.',
+    ano: '/ year', medida: 'Custom', destacado: 'Most popular', pedir: 'Request info',
+    formTitulo: '30-day free trial', formIntro: 'Leave your school name and an email and we will get in touch.',
+    centro: 'School name', enviar: 'Request trial', gracias: 'Thanks, we will write to you soon.',
+  },
+  panel: {
+    titulo: 'Teacher dashboard', aviso: 'Sample view with made-up data, showing how teachers will see their class progress.',
+    mediaPhishing: 'Phishing course', mediaClaves: 'Passwords course', mediaQuiz: 'Average quiz score', riesgo: 'Students needing support',
+    alumno: 'Student', cPhishing: 'Phishing', cClaves: 'Passwords', cQuiz: 'Quiz',
   },
 }

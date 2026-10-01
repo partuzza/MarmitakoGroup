@@ -4,6 +4,8 @@ import { idioma, t } from '../i18n'
 import Inicio from '../views/Inicio.vue'
 import Cursos from '../views/Cursos.vue'
 import PhishingTest from '../views/PhishingTest.vue'
+import Precios from '../views/Precios.vue'
+import Panel from '../views/Panel.vue'
 
 const router = createRouter({
   // ES: Hash history: funciona en cualquier hosting estático (GitHub Pages) sin configurar nada
@@ -13,6 +15,8 @@ const router = createRouter({
     { path: '/', name: 'inicio', component: Inicio },
     { path: '/cursos', name: 'cursos', component: Cursos },
     { path: '/phishing-test', name: 'phishing-test', component: PhishingTest },
+    { path: '/precios', name: 'precios', component: Precios },
+    { path: '/panel', name: 'panel', component: Panel },
   ],
   // ES: ?ir=contacto hace scroll a esa sección; si no, vuelve arriba
   // EN: ?ir=contacto scrolls to that section; otherwise goes back to the top

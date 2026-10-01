@@ -1,15 +1,18 @@
 export default {
-  menu: { inicio: 'Inicio', cursos: 'Cursos', phishing: 'Phishing Test', contacto: 'Contacto', cambiar: 'English' },
+  menu: { inicio: 'Inicio', cursos: 'Cursos', phishing: 'Phishing Test', precios: 'Para colegios', panel: 'Panel docente', contacto: 'Contacto', cambiar: 'English' },
   pie: { lugar: 'Marmitako Group · Nazaret, 2026', nota: 'Proyecto de clase' },
   titulos: {
     inicio: 'Marmitako Group | Ciberseguridad para jóvenes',
     cursos: 'Cursos | Marmitako Group',
     'phishing-test': 'Phishing Test | Marmitako Group',
+    precios: 'Planes para colegios | Marmitako Group',
+    panel: 'Panel docente | Marmitako Group',
   },
   inicio: {
     titulo: 'Ciberseguridad explicada para gente normal',
     intro: 'Cursos, guías y charlas para jóvenes de 18 a 29 años. Por niveles y sin jerga innecesaria.',
     verCursos: 'Ver los cursos →',
+    paraColegios: 'Planes para colegios →',
     ejemplo: 'Ejemplo: un correo de phishing real, simplificado.',
     queHay: 'Qué hay aquí',
     queHayIntro: 'La información sobre ciberseguridad suele estar dispersa, ser muy técnica o cara. La juntamos y la adaptamos a quien empieza.',
@@ -125,5 +128,17 @@ export default {
       instagramIp: 'Una IP, no un dominio.',
       instagram: 'Dominio oficial.',
     },
+  },
+  precios: {
+    titulo: 'Planes para colegios',
+    intro: 'Una suscripción por centro: tus alumnos aprenden a no caer en enlaces y correos sospechosos, y el profesorado ve su progreso.',
+    ano: '/ año', medida: 'A medida', destacado: 'Más elegido', pedir: 'Pedir información',
+    formTitulo: 'Prueba gratis 30 días', formIntro: 'Déjanos el nombre del centro y un correo y te contactamos.',
+    centro: 'Nombre del centro', enviar: 'Solicitar prueba', gracias: 'Gracias, te escribiremos pronto.',
+  },
+  panel: {
+    titulo: 'Panel docente', aviso: 'Vista de ejemplo con datos ficticios, para enseñar cómo verá el profesorado el progreso de su clase.',
+    mediaPhishing: 'Curso de phishing', mediaClaves: 'Curso de contraseñas', mediaQuiz: 'Nota media del quiz', riesgo: 'Alumnos que necesitan apoyo',
+    alumno: 'Alumno', cPhishing: 'Phishing', cClaves: 'Contraseñas', cQuiz: 'Quiz',
   },
 }

@@ -1,12 +1,11 @@
 {
-  "name": "marmitako-group",
+  "name": "Ziber",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "packageManager": "pnpm@10.0.0",
   "engines": {
-    "node": ">=20"
-  },
+    "node": ">=20"},
   "scripts": {
     "dev": "vite",
     "api": "node --watch server/index.js",
