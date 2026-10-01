@@ -64,7 +64,7 @@ src/
   utils/analizarUrl.js    phishing detection rules
   assets/style.css        global styles
 server/index.js           API (Google Safe Browsing) and production server
-docs/Phishing-Test.pdf    how the Phishing Test works (in Spanish)
+docs/Ziber-Presentation-EN.pdf  project presentation (in English)
 ```
 
 > File and variable names are in Spanish (e.g. `cursos` = courses, `analizarUrl` = analyseUrl), since the team works in Spanish.

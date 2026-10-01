@@ -87,7 +87,7 @@ server/auth.js         comprobación de contraseñas y cookies de sesión
 server/inscripciones.js apuntarse y darse de baja de cursos
 server/usuarios.json   usuarios de prueba (con su plan y sus cursos de ejemplo)
 server/alumnos-demo.json datos de ejemplo del panel docente
-docs/Phishing-Test.pdf explicación de cómo funciona el Phishing Test
+docs/Ziber-Presentation-EN.pdf presentación del proyecto (en inglés)
 ```
 
 ## Normas del equipo
