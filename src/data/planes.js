@@ -27,15 +27,3 @@ export const planes = [
   },
 ]
 
-// ES: Datos de ejemplo para el panel docente (no son alumnos reales)
-// EN: Sample data for the teacher dashboard (not real students)
-export const alumnosDemo = [
-  { id: 1, phishing: 100, claves: 100, quiz: 9 },
-  { id: 2, phishing: 100, claves: 60, quiz: 8 },
-  { id: 3, phishing: 75, claves: 100, quiz: 7 },
-  { id: 4, phishing: 50, claves: 30, quiz: 5 },
-  { id: 5, phishing: 100, claves: 90, quiz: 10 },
-  { id: 6, phishing: 20, claves: 0, quiz: 4 },
-  { id: 7, phishing: 80, claves: 70, quiz: 7 },
-  { id: 8, phishing: 0, claves: 0, quiz: 0 },
-]

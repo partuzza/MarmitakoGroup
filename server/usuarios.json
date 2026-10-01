@@ -1,0 +1,23 @@
+[
+  {
+    "email": "alumno@ziber.com",
+    "nombre": "Alumno",
+    "suscrito": false,
+    "docente": false,
+    "clave": "0b3e538de87a6a424f36c9d09ead62c4:c863afe14b0b9a6595a250f7b284cc532c8bbc466bdb3c4f36eadfd2001a19cfa1b818617821a6babc7214ea7b121504abf4be78b8f73c74f169d28c6889e5c3"
+  },
+  {
+    "email": "suscrito@ziber.com",
+    "nombre": "Suscrito",
+    "suscrito": true,
+    "docente": false,
+    "clave": "08f2f8a642216364638f183ff1981d17:09db63b56a44b3349efb9e54fc8ed4fb9d657d9d4fe2f7509ba110237e7d7f0e99e4083d6fdc782c02829543bcda47c23dacb509eeb3db39e0a2500e69c57a51"
+  },
+  {
+    "email": "profe@ziber.com",
+    "nombre": "Profe",
+    "suscrito": true,
+    "docente": true,
+    "clave": "03446069fae8bfc0fd7ede3ce10374ec:8360501634d5f69a9754b5ac191e7d2e43f0821b341210375512b2282bf6c70c12f7cd3afdf49472c9d3c1f4090b5fbd7d5022ce0486ad20d17c1c3b2025c291"
+  }
+]

@@ -100,8 +100,43 @@ form.box input { flex: 1; min-width: 200px; }
 .tabla td p { color: var(--gris); font-size: .88rem; }
 .tabla .num { white-space: nowrap; font-family: var(--mono); }
 .tabla .accion { text-align: right; padding-right: 0; }
+.cursos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.curso { display: flex; flex-direction: column; border: 1px solid var(--linea); border-radius: 16px; overflow: hidden; background: var(--cristal); backdrop-filter: blur(8px); transition: transform .25s, box-shadow .25s, border-color .25s; }
+.curso:hover { transform: translateY(-4px); border-color: var(--azul); box-shadow: var(--brillo); }
+.curso img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 1px solid var(--linea); }
+.curso-cuerpo { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px 18px; flex: 1; }
+.curso h2 { font-size: 1.1rem; margin: 0; }
+.curso p { color: var(--gris); font-size: .9rem; flex: 1; }
+.curso-pie { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 10px; border-top: 1px solid var(--linea); font-size: .9rem; }
+.curso-pie .num { font-family: var(--mono); color: var(--texto); }
+.nivel { align-self: flex-start; font: 500 .7rem var(--mono); text-transform: uppercase; letter-spacing: .08em; padding: 2px 10px; border-radius: 999px; border: 1px solid currentColor; }
+.nivel-b { color: var(--verde); }
+.nivel-i { color: var(--azul); }
+.nivel-a { color: #c084fc; }
+
+/* ES: Muro de suscripción: cursos borrosos que se desvanecen y un aviso encima · EN: Subscription wall: blurred courses fading out with a notice on top */
+.muro { position: relative; margin-top: 20px; min-height: 340px; }
+.muro .bloqueados { filter: blur(6px); opacity: .55; pointer-events: none; user-select: none; -webkit-mask-image: linear-gradient(#000 0%, transparent 85%); mask-image: linear-gradient(#000 0%, transparent 85%); }
+.muro .bloqueados .curso:hover { transform: none; }
+.muro-aviso { position: absolute; left: 50%; top: 40px; width: min(460px, 100%); translate: -50% 24px; opacity: 0; text-align: center; padding: 28px 24px; border: 1px solid var(--cian); border-radius: 18px; background: rgba(5, 11, 24, .88); backdrop-filter: blur(12px); box-shadow: 0 0 40px rgba(34, 211, 238, .25); transition: opacity .5s, translate .5s; }
+.muro-aviso.visible { opacity: 1; translate: -50% 0; }
+.muro-aviso .candado { font-size: 2rem; margin-bottom: 4px; }
+.muro-aviso p { color: var(--gris); margin: 4px 0 18px; }
 .link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--cian); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; white-space: nowrap; }
 .link-btn:hover { text-shadow: 0 0 12px var(--cian); }
+
+/* ES: Login · EN: Login */
+.sesion { background: none; border: 0; padding: 0; font: inherit; color: var(--gris); cursor: pointer; transition: color .2s; }
+.sesion:hover { color: var(--cian); }
+.login-form { display: grid; gap: 6px; max-width: 360px; }
+.login-form label { font-size: .88rem; color: var(--gris); }
+.login-form input { margin-bottom: 8px; }
+.login-form .btn { justify-self: start; margin-top: 4px; }
+.login-form .btn:disabled { opacity: .6; cursor: wait; }
+.error { margin-top: 10px; color: var(--rojo); min-height: 1.5em; font-size: .95rem; }
+.demo { margin-top: 24px; padding: 16px 18px; max-width: 460px; border: 1px dashed var(--linea); border-radius: 12px; color: var(--gris); font-size: .9rem; }
+.demo ul { margin-top: 8px; padding-left: 1.1em; display: grid; gap: 4px; }
+.demo code { font-family: var(--mono); color: var(--texto); }
 
 /* ES: Pie · EN: Footer */
 footer { border-top: 1px solid var(--linea); padding: 24px 0 40px; color: var(--gris); font-size: .85rem; font-family: var(--mono); }

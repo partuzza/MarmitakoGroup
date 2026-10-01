@@ -1,5 +1,5 @@
 export default {
-  menu: { inicio: 'Inicio', cursos: 'Cursos', phishing: 'Phishing Test', precios: 'Para colegios', panel: 'Panel docente', contacto: 'Contacto', cambiar: 'English' },
+  menu: { inicio: 'Inicio', cursos: 'Cursos', phishing: 'Phishing Test', precios: 'Para colegios', panel: 'Panel docente', contacto: 'Contacto', entrar: 'Entrar', salir: 'Salir', cambiar: 'English' },
   pie: { lugar: 'Marmitako Group · Nazaret, 2026', nota: 'Proyecto de clase' },
   titulos: {
     inicio: 'Marmitako Group | Ciberseguridad para jóvenes',
@@ -7,6 +7,7 @@ export default {
     'phishing-test': 'Phishing Test | Marmitako Group',
     precios: 'Planes para colegios | Marmitako Group',
     panel: 'Panel docente | Marmitako Group',
+    login: 'Entrar | Marmitako Group',
   },
   inicio: {
     titulo: 'Ciberseguridad explicada para gente normal',
@@ -56,11 +57,13 @@ export default {
     todos: 'Todos los niveles',
     buscar: 'Buscar curso',
     placeholder: 'Buscar…',
-    cols: { curso: 'Curso', desc: 'Descripción', nivel: 'Nivel', horas: 'Duración', precio: 'Precio', accion: 'Acción' },
     gratis: 'Gratis',
     inscribirme: 'Inscribirme',
     vacio: 'Ningún curso coincide con la búsqueda.',
     inscrito: 'Demo: te has inscrito en «{curso}».',
+    muroTitulo: 'Si quieres seguir viendo, suscríbete',
+    muroTexto: 'Hay {n} cursos más esperándote con una suscripción.',
+    muroBoton: 'Ver planes de suscripción',
   },
   phishing: {
     titulo: 'Phishing Test',
@@ -140,5 +143,23 @@ export default {
     titulo: 'Panel docente', aviso: 'Vista de ejemplo con datos ficticios, para enseñar cómo verá el profesorado el progreso de su clase.',
     mediaPhishing: 'Curso de phishing', mediaClaves: 'Curso de contraseñas', mediaQuiz: 'Nota media del quiz', riesgo: 'Alumnos que necesitan apoyo',
     alumno: 'Alumno', cPhishing: 'Phishing', cClaves: 'Contraseñas', cQuiz: 'Quiz',
+    error: 'No se han podido cargar los datos. ¿Está arrancado el servidor (pnpm api)?',
+  },
+  login: {
+    titulo: 'Entrar',
+    intro: 'Entra con tu cuenta para ver todos los cursos de tu suscripción.',
+    necesario: 'Esta página es solo para profesores. Entra con una cuenta de docente.',
+    correo: 'Correo electrónico',
+    clave: 'Contraseña',
+    boton: 'Entrar',
+    dentro: 'Has entrado como {nombre}.',
+    soloDocentes: 'Tu cuenta no tiene acceso al panel docente.',
+    demo: 'Cuentas de prueba (pulsa una para rellenar el correo). Contraseña:',
+    roles: { alumno: 'sin suscripción', suscrito: 'con suscripción', profe: 'docente, con acceso al panel' },
+    errores: {
+      credenciales: 'Correo o contraseña incorrectos.',
+      demasiados: 'Demasiados intentos. Espera un minuto.',
+      servidor: 'No se puede conectar con el servidor. ¿Está arrancado (pnpm api)?',
+    },
   },
 }

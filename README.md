@@ -48,6 +48,18 @@ Opcionalmente también consulta la base de datos de webs peligrosas de Google. P
 
 > ⚠️ **Nunca subáis el archivo `.env` a git** (ya está en `.gitignore`). La clave solo vive en el servidor, nunca llega al navegador.
 
+## Login de demo
+
+Login sin base de datos: los usuarios están en `server/usuarios.json` (contraseñas guardadas con hash `scrypt`) y la sesión es una cookie `HttpOnly` firmada por el servidor. Necesita el servidor arrancado (`pnpm api` + `pnpm dev`, o `pnpm start`); en GitHub Pages no funciona.
+
+| Usuario              | Contraseña  | Qué ve                                  |
+| -------------------- | ----------- | --------------------------------------- |
+| `alumno@ziber.com`   | `ziber2026` | 9 cursos y el aviso de suscripción      |
+| `suscrito@ziber.com` | `ziber2026` | todos los cursos                        |
+| `profe@ziber.com`    | `ziber2026` | todos los cursos y el panel docente     |
+
+Opcional: pon un `SESSION_SECRET` en `.env` (ver `.env.example`) para que las sesiones no se cierren al reiniciar el servidor.
+
 ## Estructura
 
 ```
@@ -55,15 +67,20 @@ src/
   main.js              arranque de la app
   App.vue              cabecera, pie, botón de idioma y <RouterView>
   i18n/                traducciones: index.js (función t), es.js, en.js
-  router/index.js      rutas: / (Inicio), /cursos y /phishing-test
+  router/index.js      rutas y protección del panel docente
+  auth.js              estado de la sesión (entrar, salir, quién hay conectado)
   views/Inicio.vue     página principal
-  views/Cursos.vue     catálogo con filtros y buscador
+  views/Cursos.vue     catálogo en tarjetas con filtros, buscador y aviso de suscripción
+  views/Login.vue      formulario de login
   views/PhishingTest.vue analizador de enlaces + quiz
   components/          MailPhishing, UrlColoreada, QuizPhishing
   data/cursos.js       datos de los cursos (en los dos idiomas)
   utils/analizarUrl.js reglas de detección de phishing
   assets/style.css     estilos globales
-server/index.js        API (Google Safe Browsing) y servidor de producción
+server/index.js        API (Google Safe Browsing, login, panel) y servidor de producción
+server/auth.js         comprobación de contraseñas y cookies de sesión
+server/usuarios.json   usuarios de prueba
+server/alumnos-demo.json datos de ejemplo del panel docente
 docs/Phishing-Test.pdf explicación de cómo funciona el Phishing Test
 ```
 

@@ -1,5 +1,5 @@
 export default {
-  menu: { inicio: 'Home', cursos: 'Courses', phishing: 'Phishing Test', precios: 'For schools', panel: 'Teacher dashboard', contacto: 'Contact', cambiar: 'Español' },
+  menu: { inicio: 'Home', cursos: 'Courses', phishing: 'Phishing Test', precios: 'For schools', panel: 'Teacher dashboard', contacto: 'Contact', entrar: 'Log in', salir: 'Log out', cambiar: 'Español' },
   pie: { lugar: 'Marmitako Group · Nazaret, 2026', nota: 'Class project' },
   titulos: {
     inicio: 'Marmitako Group | Cybersecurity for young people',
@@ -7,6 +7,7 @@ export default {
     'phishing-test': 'Phishing Test | Marmitako Group',
     precios: 'School plans | Marmitako Group',
     panel: 'Teacher dashboard | Marmitako Group',
+    login: 'Log in | Marmitako Group',
   },
   inicio: {
     titulo: 'Cybersecurity explained for normal people',
@@ -56,11 +57,13 @@ export default {
     todos: 'All levels',
     buscar: 'Search courses',
     placeholder: 'Search…',
-    cols: { curso: 'Course', desc: 'Description', nivel: 'Level', horas: 'Length', precio: 'Price', accion: 'Action' },
     gratis: 'Free',
     inscribirme: 'Enrol',
     vacio: 'No courses match your search.',
     inscrito: 'Demo: you have enrolled in “{curso}”.',
+    muroTitulo: 'Want to keep watching? Subscribe',
+    muroTexto: 'There are {n} more courses waiting for you with a subscription.',
+    muroBoton: 'See subscription plans',
   },
   phishing: {
     titulo: 'Phishing Test',
@@ -140,5 +143,23 @@ export default {
     titulo: 'Teacher dashboard', aviso: 'Sample view with made-up data, showing how teachers will see their class progress.',
     mediaPhishing: 'Phishing course', mediaClaves: 'Passwords course', mediaQuiz: 'Average quiz score', riesgo: 'Students needing support',
     alumno: 'Student', cPhishing: 'Phishing', cClaves: 'Passwords', cQuiz: 'Quiz',
+    error: 'Could not load the data. Is the server running (pnpm api)?',
+  },
+  login: {
+    titulo: 'Log in',
+    intro: 'Log in with your account to see every course in your subscription.',
+    necesario: 'This page is for teachers only. Log in with a teacher account.',
+    correo: 'Email',
+    clave: 'Password',
+    boton: 'Log in',
+    dentro: 'You are logged in as {nombre}.',
+    soloDocentes: 'Your account has no access to the teacher dashboard.',
+    demo: 'Test accounts (click one to fill in the email). Password:',
+    roles: { alumno: 'no subscription', suscrito: 'with subscription', profe: 'teacher, with dashboard access' },
+    errores: {
+      credenciales: 'Wrong email or password.',
+      demasiados: 'Too many attempts. Wait a minute.',
+      servidor: 'Cannot reach the server. Is it running (pnpm api)?',
+    },
   },
 }
